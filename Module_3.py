@@ -147,5 +147,5 @@ def text_formatting(txt):
 
 
 print(text_formatting(text))
-# count of white spaces after applying changes into input text.
-print(f'Count of spaces is: {space_calc(text_formatting(text))}')
+print(f'Count of spaces in formatted text is: {space_calc(text_formatting(text))}')
+print(f'Count of spaces in input text is: {space_calc(text)}')
