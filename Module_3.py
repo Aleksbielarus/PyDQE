@@ -1,4 +1,5 @@
 import string
+import re
 
 # create a variable with the text from hometask.
 text = '''homEwork:
@@ -70,6 +71,21 @@ def rplc(txt, old, new):
 
 '''
     Function name: 
+        remove_spaces(txt)
+    Fuction description: 
+        remove more than 1 space between words
+    Params:
+            txt - it's a str formatting text.
+    Return:
+            txt - string formatting text with changes applied.
+'''
+def remove_spaces(txt):
+    txt = re.sub(" +", " ", txt)
+    return txt
+
+
+'''
+    Function name: 
         create_sentence(txt)
     Fuction description: 
         fuction create sentence, that consists from the 
@@ -121,11 +137,12 @@ def space_calc(txt):
 '''
 def text_formatting(txt):
     proc_text = remove_empty_lines(txt)             # remove empty lines
+    proc_text = remove_spaces(proc_text)            # remove useless spaces
     proc_text = register_normalize(proc_text)       # apply register correction
     proc_text = rplc(proc_text, ' iz ', ' is ')     # typo correction
     proc_text = rplc(proc_text, ' tex.', ' text.')  # typo correction
     proc_text = rplc(proc_text, ' tex ', ' text ')  # typo correction
-    proc_text = proc_text + ' ' * 2 + rplc(create_sentence(proc_text).lower(), ' .', '.')  # add required sentence
+    proc_text = proc_text + ' ' + rplc(create_sentence(proc_text).lower(), ' .', '.')  # add required sentence
     return proc_text
 
 
