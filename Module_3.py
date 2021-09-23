@@ -32,6 +32,7 @@ text = '''homEwork:
 '''
 def register_normalize(txt):
     rtrn_txt = ". ".join(i.capitalize() for i in txt.lower().split(". "))
+    rtrn_txt = "\n ".join(i.capitalize() for i in rtrn_txt.split("\n "))
     return rtrn_txt
 
 
@@ -142,7 +143,7 @@ def text_formatting(txt):
     proc_text = rplc(proc_text, ' iz ', ' is ')     # typo correction
     proc_text = rplc(proc_text, ' tex.', ' text.')  # typo correction
     proc_text = rplc(proc_text, ' tex ', ' text ')  # typo correction
-    proc_text = proc_text + ' ' + rplc(create_sentence(proc_text).lower(), ' .', '.')  # add required sentence
+    proc_text = proc_text + ' ' + rplc(create_sentence(proc_text).lower(), ' .', '.').capitalize() # add required sentence
     return proc_text
 
 
