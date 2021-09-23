@@ -1,3 +1,5 @@
+import string
+
 # create a variable with the text from hometask.
 text = '''homEwork:
   tHis iz your homeWork, copy these Text to variable.
@@ -30,6 +32,25 @@ text = '''homEwork:
 def register_normalize(txt):
     rtrn_txt = ". ".join(i.capitalize() for i in txt.lower().split(". "))
     return rtrn_txt
+
+
+'''
+    Function name: 
+        remove_empty_lines(txt)
+    Fuction description: 
+        this function remove empty lines from string object
+    Params:
+            txt - it's a str formatting text.
+    Return:
+            string_without_empty_lines - string text without empty lines.
+'''
+def remove_empty_lines(txt):
+    lines = txt.split("\n")
+    non_empty_lines = [line for line in lines if line.strip() != ""]
+    string_without_empty_lines = ""
+    for line in non_empty_lines:
+        string_without_empty_lines += line + "\n"
+    return string_without_empty_lines
 
 
 '''
@@ -84,7 +105,7 @@ def create_sentence(txt):  # grubaya sila
         count_of_spaces - it's an integer value (sum of of spaces and line breaks)
 '''
 def space_calc(txt):
-    count_of_spaces = txt.count('\n') + txt.count(' ')
+    count_of_spaces = len([1 for i in text if i in string.whitespace])
     return count_of_spaces
 
 '''
@@ -98,11 +119,12 @@ def space_calc(txt):
             proc_text - ready-to-use fully formatted text in str format.
 '''
 def text_formatting(txt):
-    proc_text = register_normalize(txt)             # apply register correction
+    proc_text = remove_empty_lines(txt)             # remove empty lines
+    proc_text = register_normalize(proc_text)       # apply register correction
     proc_text = rplc(proc_text, ' iz ', ' is ')     # typo correction
     proc_text = rplc(proc_text, ' tex.', ' text.')  # typo correction
     proc_text = rplc(proc_text, ' tex ', ' text ')  # typo correction
-    proc_text = proc_text + '\n  ' * 3 + rplc(create_sentence(proc_text).lower(),' .', '.')  # add required sentence
+    proc_text = proc_text + ' ' * 2 + rplc(create_sentence(proc_text).lower(), ' .', '.')  # add required sentence
     return proc_text
 
 
