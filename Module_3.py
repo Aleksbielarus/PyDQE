@@ -105,8 +105,9 @@ def create_sentence(txt):  # grubaya sila
         count_of_spaces - it's an integer value (sum of of spaces and line breaks)
 '''
 def space_calc(txt):
-    count_of_spaces = len([1 for i in text if i in string.whitespace])
+    count_of_spaces = len([1 for i in txt if i in string.whitespace])
     return count_of_spaces
+
 
 '''
     Function name: 
