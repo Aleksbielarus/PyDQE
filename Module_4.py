@@ -259,7 +259,7 @@ def text_formatting(txt):
 
 list_of_dicts = gen_dict_list(2, 10)
 print(list_of_dicts)
-print(split_dict_from_list(list_of_dicts))
+print(split_dict_from_list(list_of_dicts), '\n')
 print(text_formatting(text))
 print(f'Count of spaces in formatted text is: {space_calc(text_formatting(text))}')
 print(f'Count of spaces in input text is: {space_calc(text)}')
