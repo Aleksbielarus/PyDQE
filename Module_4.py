@@ -29,7 +29,7 @@ def dict_count(first, last):
 '''
     Function name: 
         gen_dict_list(first, last)
-    Fuction description: 
+    Function description: 
         generate random number of dicts and input it into one list.
     Params:
             first - it's a param that used for func:  dict_count(first, last), min count of dictionaries in list.
@@ -63,7 +63,7 @@ def gen_dict_list(first, last):
 '''
     Function name: 
         split_dict_from_list(dict_list)
-    Fuction description: 
+    Function description: 
         Split list of dicts to one dict.
     Params:
         dict_list - it's a list of dictionary.
@@ -117,7 +117,7 @@ text = '''homEwork:
 '''
     Function name: 
         register_normalize(txt)
-    Fuction description: 
+    Function description: 
         convert all text to lowercase, then raises letter to 
         uppercase everywhere after ". ".
     Params:
@@ -136,7 +136,7 @@ def register_normalize(txt):
 '''
     Function name: 
         remove_empty_lines(txt)
-    Fuction description: 
+    Function description: 
         this function remove empty lines from string object
     Params:
             txt - it's a str formatting text.
@@ -157,7 +157,7 @@ def remove_empty_lines(txt):
 '''
     Function name: 
         rplc(txt, old, new)
-    Fuction description: 
+    Function description: 
         replace one str value to another.
     Params:
             txt - it's a str formatting text.
@@ -174,7 +174,7 @@ def rplc(txt, old, new):
 '''
     Function name: 
         remove_spaces(txt)
-    Fuction description: 
+    Function description: 
         remove more than 1 space between words
     Params:
             txt - it's a str formatting text.
@@ -191,7 +191,7 @@ def remove_spaces(txt):
 '''
     Function name: 
         create_sentence(txt)
-    Fuction description: 
+    Function description: 
         fuction create sentence, that consists from the 
         last word of each sentance of the input text.
     Params:
@@ -219,7 +219,7 @@ def create_sentence(txt):  # grubaya sila
 '''
     Function name: 
         space_calc(txt)
-    Fuction description: 
+    Function description: 
         fuction calculate sum of spaces and line breaks.
     Params:
         txt - it's a str formatting text.
@@ -236,7 +236,7 @@ def space_calc(txt):
 '''
     Function name: 
         text_formatting(txt):
-    Fuction description: 
+    Function description: 
         this func used for execute another functions.
     Params:
             txt - it's a str formatting text.
