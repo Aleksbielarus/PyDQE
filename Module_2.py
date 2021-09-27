@@ -13,8 +13,10 @@ def dict_count(first, last):
     return dct_count
 
 
-def gen_dict_list():
-    for dct in range(1, last):
+def gen_dict_list(first, last):
+    dict_list = []
+    lst = dict_count(first, last)
+    for dct in range(1, lst):
         dictionary = {}
         dict_len = random.randrange(len(string.ascii_lowercase))
         for i in range(1, dict_len + 1):
@@ -58,8 +60,6 @@ def split_dict_from_list(dict_list):
     return result_dict
 
 
-last = dict_count(2, 10)
-dict_list = []
-list_of_dicts = gen_dict_list()
+list_of_dicts = gen_dict_list(2, 10)
 print(list_of_dicts)
 print(split_dict_from_list(list_of_dicts))
