@@ -50,12 +50,26 @@ class PrivateAd(Note):
         return (datetime.strptime(self.date, '%d/%m/%Y') - datetime.now()).days
 
 
+class Weather(Note):
+    def __init__(self, type, note_text, city, date, degrees):
+        Note.__init__(self, type=type, note_text=note_text)
+        self.date = date
+        self.degrees = degrees
+        self.city = city
+
+    def print_degrees(self):
+        return self.degrees
+
+    def print_city(self):
+        return self.city
+
 def console():
     type = str()
     cnt = 0
     welcome_text = 'please, choose the note type:\n' \
                    ' input "1" if news\n' \
                    ' input "2" if private ad\n' \
+                   ' input "3" if weather\n' \
                    ' input "0" if you want to stop'
     while type != 0:
         # need to add try/except.
@@ -72,10 +86,10 @@ def console():
                 note_text = input("Please input message text:\n> ").capitalize()
                 note_city = input("Please input message city:\n> ").capitalize()
                 new_note = News('News', note_text, note_city)
-                insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type()))*'-'}\n" \
+                insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type())) * '-'}\n" \
                              f"{new_note.print_note_text()}\n" \
                              f"{new_note.print_city()}, {new_note.print_datetime()}\n" \
-                             f"{31*'-'}\n"
+                             f"{31 * '-'}\n"
                 add_new_note(insert_row)
                 print(f'Message with type {type} was created.')
                 type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
@@ -91,12 +105,24 @@ def console():
                 add_new_note(insert_row)
                 print(f'Message with type {type} was created.')
                 type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
-            # MY UNIQUE NOTE
+            # MY UNIQUE NOTE (WHETHER)
             elif type == 3:
-                pass
-            # EXIT
+                note_text = input("Please input message text:\n> ").capitalize()
+                note_city = input("Please input message city:\n> ").capitalize()
+                note_degrees = input("Please input degrees:\n> ").capitalize()
+                date = input("Please input message date(example '31/10/2021'):\n> ")
+                new_note = Weather('Weather', note_text, note_city, date, note_degrees)
+                insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type())) * '-'}\n" \
+                             f"{new_note.print_note_text()}\n" \
+                             f"{new_note.print_city()}, {new_note.print_degrees()} degrees {new_note.print_date()}\n" \
+                             f"{31 * '-'}\n"
+                add_new_note(insert_row)
+                print(f'Message with type {type} was created.')
+                type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
+        # TYPE ERROR
         except:
             print('Not valid data type, please try again.')
+        # EXIT
         if type == 0:
             print("Have a good day!")
         cnt += 1
