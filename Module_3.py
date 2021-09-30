@@ -5,7 +5,7 @@ import re
 text = '''homEwork:
   tHis iz your homeWork, copy these Text to variable.
 
-
+ 
 
   You NEED TO normalize it fROM letter CASEs point oF View. also, create one MORE senTENCE witH LAST WoRDS of each existING SENtence and add it to the END OF this Paragraph.
 
@@ -31,8 +31,8 @@ text = '''homEwork:
             rtrn_txt - register normalized text in str format.
 '''
 def register_normalize(txt):
-    rtrn_txt = ". ".join(i.capitalize() for i in txt.lower().split(". "))
-    rtrn_txt = "\n ".join(i.capitalize() for i in rtrn_txt.split("\n "))
+    rtrn_txt = ". ".join((i[0].capitalize()+i[1:]) for i in txt.lower().split(". "))
+    rtrn_txt = "\n ".join((i[0].capitalize()+i[1:]) for i in rtrn_txt.split("\n "))
     return rtrn_txt
 
 
