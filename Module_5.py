@@ -52,13 +52,15 @@ class PrivateAd(Note):
 
 def console():
     type = str()
+    cnt = 0
+    welcome_text = 'please, choose the note type:\n' \
+                   ' input "1" if news\n' \
+                   ' input "2" if private ad\n' \
+                   ' input "0" if you want to stop'
     while type != 0:
         # need to add try/except.
-        type = int(input('Hi, \nplease, choose the note type:\n'
-                         ' input "1" if news\n'
-                         ' input "2" if private ad\n'
-                         ' input "0" if you want to stop\n'
-                         '> '))
+        print('Hi, ' + welcome_text) if cnt == 0 else print(welcome_text.capitalize())
+        type = int(input('> '))
         # NEWS NOTE
         if type == 1:
             note_text = input("Please input message text:\n> ").capitalize()
@@ -69,6 +71,8 @@ def console():
                          f"{new_note.print_city()}, {new_note.print_datetime()}\n" \
                          f"{31*'-'}\n"
             add_new_note(insert_row)
+            print(f'Message with type {type} was created.')
+            type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
         # PRIVATE AD
         elif type == 2:
             note_text = input("Please input message text:\n> ").capitalize()
@@ -79,20 +83,23 @@ def console():
                          f"Actual until: {new_note.print_date()}, {new_note.print_days_left()} days left\n" \
                          f"{31 * '-'}\n"
             add_new_note(insert_row)
+            print(f'Message with type {type} was created.')
+            type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
         # MY UNIQUE NOTE
         elif type == 3:
             pass
-        # EXIT
-        elif type == 0:
-            print("Have a good day!")
         # ERROR MESSAGE
-        else:
+        elif type not in (1, 2, 3, 0):
             print(f'"{type}" is not valid value. Please, try again')
-            type = input('Please, choose the note type:\n'
-                         ' input "1" if news\n'
-                         ' input "2" if private ad\n'
-                         ' input "0" if you want to stop\n'
-                         '> ')
+            # type = input('Please, choose the note type:\n'
+            #              ' input "1" if news\n'
+            #              ' input "2" if private ad\n'
+            #              ' input "0" if you want to stop\n'
+            #              '> ')
+        # EXIT
+        if type == 0:
+            print("Have a good day!")
+        cnt += 1
 
 
 console()
