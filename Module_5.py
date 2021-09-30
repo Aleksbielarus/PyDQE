@@ -91,11 +91,6 @@ def console():
         # ERROR MESSAGE
         elif type not in (1, 2, 3, 0):
             print(f'"{type}" is not valid value. Please, try again')
-            # type = input('Please, choose the note type:\n'
-            #              ' input "1" if news\n'
-            #              ' input "2" if private ad\n'
-            #              ' input "0" if you want to stop\n'
-            #              '> ')
         # EXIT
         if type == 0:
             print("Have a good day!")
