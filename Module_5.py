@@ -60,38 +60,43 @@ def console():
     while type != 0:
         # need to add try/except.
         print('Hi, ' + welcome_text) if cnt == 0 else print(welcome_text.capitalize())
-        type = int(input('> '))
-        # NEWS NOTE
-        if type == 1:
-            note_text = input("Please input message text:\n> ").capitalize()
-            note_city = input("Please input message city:\n> ").capitalize()
-            new_note = News('News', note_text, note_city)
-            insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type()))*'-'}\n" \
-                         f"{new_note.print_note_text()}\n" \
-                         f"{new_note.print_city()}, {new_note.print_datetime()}\n" \
-                         f"{31*'-'}\n"
-            add_new_note(insert_row)
-            print(f'Message with type {type} was created.')
-            type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
-        # PRIVATE AD
-        elif type == 2:
-            note_text = input("Please input message text:\n> ").capitalize()
-            date = input("Please input message date(example '31/10/2021':\n> ")
-            new_note = PrivateAd('Private Add', note_text, date)
-            insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type())) * '-'}\n" \
-                         f"{new_note.print_note_text()}\n" \
-                         f"Actual until: {new_note.print_date()}, {new_note.print_days_left()} days left\n" \
-                         f"{31 * '-'}\n"
-            add_new_note(insert_row)
-            print(f'Message with type {type} was created.')
-            type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
-        # MY UNIQUE NOTE
-        elif type == 3:
-            pass
-        # ERROR MESSAGE
-        elif type not in (1, 2, 3, 0):
-            print(f'"{type}" is not valid value. Please, try again')
-        # EXIT
+        type = input('> ')
+        # ERROR MESSAGE DATA TYPE
+        try:
+            type = int(type)
+            # NOT VALID TYPE
+            if int(type) not in [1, 2, 3, 0]:
+                print(f'"{type}" is not valid value. Please, try again')
+            # NEWS NOTE
+            elif int(type) == 1:
+                note_text = input("Please input message text:\n> ").capitalize()
+                note_city = input("Please input message city:\n> ").capitalize()
+                new_note = News('News', note_text, note_city)
+                insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type()))*'-'}\n" \
+                             f"{new_note.print_note_text()}\n" \
+                             f"{new_note.print_city()}, {new_note.print_datetime()}\n" \
+                             f"{31*'-'}\n"
+                add_new_note(insert_row)
+                print(f'Message with type {type} was created.')
+                type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
+            # PRIVATE AD
+            elif type == 2:
+                note_text = input("Please input message text:\n> ").capitalize()
+                date = input("Please input message date(example '31/10/2021':\n> ")
+                new_note = PrivateAd('Private Add', note_text, date)
+                insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type())) * '-'}\n" \
+                             f"{new_note.print_note_text()}\n" \
+                             f"Actual until: {new_note.print_date()}, {new_note.print_days_left()} days left\n" \
+                             f"{31 * '-'}\n"
+                add_new_note(insert_row)
+                print(f'Message with type {type} was created.')
+                type = int(input('Do you whish continue to add news?\n print "1" if yes\n print "0" if no.\n> '))
+            # MY UNIQUE NOTE
+            elif type == 3:
+                pass
+            # EXIT
+        except:
+            print('Not valid data type, please try again.')
         if type == 0:
             print("Have a good day!")
         cnt += 1
