@@ -264,6 +264,7 @@ def add_text(place_to_add, text_to_add, txt):
                     + text_to_add + txt[txt.find(place_to_add)+len(place_to_add):]
     return proc_text
 
+
 '''
     Function name: 
         text_formatting(txt):
@@ -296,5 +297,3 @@ print(split_dict_from_list(list_of_dicts), '\n')
 print(text_formatting(text))
 print(f'Count of spaces in formatted text is: {space_calc(text_formatting(text))}')
 print(f'Count of spaces in input text is: {space_calc(text)}')
-
-
