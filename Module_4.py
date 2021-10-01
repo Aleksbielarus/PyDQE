@@ -128,8 +128,20 @@ text = '''homEwork:
 
 
 def register_normalize(txt):
-    rtrn_txt = ". ".join(i.capitalize() for i in txt.lower().split(". "))
-    rtrn_txt = "\n ".join(i.capitalize() for i in rtrn_txt.split("\n "))
+    rtrn_txt = str()
+    for row in txt.split("\n"):
+        cnt = 0
+        for item in row:
+            if item in string.whitespace:
+                rtrn_txt += item
+            # first latter of the string capitalized.
+            elif item in string.ascii_letters and cnt == 0:
+                rtrn_txt += item.capitalize()
+                cnt = 1
+            elif cnt != 0:
+                rtrn_txt += item.lower()
+        rtrn_txt += '\n'
+    rtrn_txt = ". ".join((i[0].capitalize() + i[1:]) for i in rtrn_txt.split(". "))
     return rtrn_txt
 
 
@@ -235,6 +247,25 @@ def space_calc(txt):
 
 '''
     Function name: 
+        add_text(place_to_add, text_to_add, txt):
+    Fuction description: 
+        fuction add text to string object to the required place
+    Params:
+        place_to_add - it's a str formatting text. text_to_add would be added after place_to_add.
+        text_to_add - it's a text for adding.
+        txt - it's a str formatting text. This is the text to which the  text_to_add will be added.
+    Return:
+        proc_text - it's an string text with the added new text.
+'''
+
+
+def add_text(place_to_add, text_to_add, txt):
+    proc_text = txt[0:txt.find(place_to_add) + len(place_to_add)] + " " \
+                    + text_to_add + txt[txt.find(place_to_add)+len(place_to_add):]
+    return proc_text
+
+'''
+    Function name: 
         text_formatting(txt):
     Function description: 
         this func used for execute another functions.
@@ -246,14 +277,16 @@ def space_calc(txt):
 
 
 def text_formatting(txt):
-    proc_text = remove_empty_lines(txt)  # remove empty lines
-    proc_text = remove_spaces(proc_text)  # remove useless spaces
-    proc_text = register_normalize(proc_text)  # apply register correction
-    proc_text = rplc(proc_text, ' iz ', ' is ')  # typo correction
+    proc_text = txt
+    # proc_text = remove_empty_lines(proc_text)     # remove empty lines
+    # proc_text = remove_spaces(proc_text)          # remove useless spaces
+    proc_text = register_normalize(proc_text)       # apply register correction
+    proc_text = rplc(proc_text, ' iz ', ' is ')     # typo correction
     proc_text = rplc(proc_text, ' tex.', ' text.')  # typo correction
     proc_text = rplc(proc_text, ' tex ', ' text ')  # typo correction
-    proc_text = proc_text + ' ' + rplc(create_sentence(proc_text).lower(), ' .',
-                                       '.').capitalize()  # add required sentence
+    proc_text = add_text('the end of this paragraph.',
+                         rplc(create_sentence(proc_text).lower(), ' .', '.').capitalize(),
+                         proc_text)  # add required sentence
     return proc_text
 
 
@@ -263,3 +296,5 @@ print(split_dict_from_list(list_of_dicts), '\n')
 print(text_formatting(text))
 print(f'Count of spaces in formatted text is: {space_calc(text_formatting(text))}')
 print(f'Count of spaces in input text is: {space_calc(text)}')
+
+
