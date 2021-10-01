@@ -260,8 +260,14 @@ def space_calc(txt):
 
 
 def add_text(place_to_add, text_to_add, txt):
-    proc_text = txt[0:txt.find(place_to_add) + len(place_to_add)] + " " \
-                    + text_to_add + txt[txt.find(place_to_add)+len(place_to_add):]
+    # proc_text = txt[0:txt.find(place_to_add) + len(place_to_add)] + " " \
+    #                 + text_to_add + txt[txt.find(place_to_add)+len(place_to_add):]
+    proc_text = str()
+    for paragraph in txt.split('\n'):
+        if place_to_add in paragraph:
+            proc_text += (paragraph + ' ' + text_to_add + '\n')
+        else:
+            proc_text += (paragraph + '\n')
     return proc_text
 
 

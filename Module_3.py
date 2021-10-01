@@ -178,6 +178,8 @@ def text_formatting(txt):
     # proc_text = remove_spaces(proc_text)          # remove useless spaces
     proc_text = register_normalize(proc_text)       # apply register correction
     proc_text = rplc(proc_text, ' iz ', ' is ')     # typo correction
+    proc_text = rplc(proc_text, 'Iz ', ' Is ')      # typo correction
+    proc_text = rplc(proc_text, 'iz ', ' is ')      # typo correction
     proc_text = rplc(proc_text, ' tex.', ' text.')  # typo correction
     proc_text = rplc(proc_text, ' tex ', ' text ')  # typo correction
     proc_text = add_text('the end of this paragraph.',
