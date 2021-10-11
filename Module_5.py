@@ -150,7 +150,7 @@ def console():
                         print(f'"{type}" is not valid value. Please, try again')
                     # IMPORT FROM CUSTOM FILE FORMAT
                     elif type == 1:
-                        link_to_file = input("Please, specify the location of the file\n> ")
+                        path_to_file = input("Please, specify the file path\n> ")
                     # IMPORT FROM CSV FILE FORMAT
                     elif type == 2:
                         print("Will be available soon. Please choose another file format")
