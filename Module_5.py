@@ -75,7 +75,12 @@ def console():
                    ' input "2" if private ad\n' \
                    ' input "3" if weather\n' \
                    ' input "0" if you want to stop'
-    import_input = 'import file menu'
+    import_input = 'please, choose the import  file format:\n' \
+                   ' input "1" from custom format\n' \
+                   ' input "2" from csv format\n' \
+                   ' input "3" from json format\n' \
+                   ' input "4" from xml format\n' \
+                   ' input "0" if you want to stop'
     while type != 0:
         print('Hi, ' + welcome_message) if cnt == 0 else print(welcome_message.capitalize())
         type = input('> ')
@@ -138,6 +143,25 @@ def console():
             elif int(type) == 2:
                 print(import_input)
                 type = input('> ')
+                try:
+                    type = int(type)
+                    # NOT VALID TYPE
+                    if int(type) not in [1, 2, 3, 4, 0]:
+                        print(f'"{type}" is not valid value. Please, try again')
+                    # IMPORT FROM CUSTOM FILE FORMAT
+                    elif type == 1:
+                        link_to_file = input("Please, specify the location of the file\n> ")
+                    # IMPORT FROM CSV FILE FORMAT
+                    elif type == 2:
+                        print("Will be available soon. Please choose another file format")
+                    # IMPORT FROM JSON FILE FORMAT
+                    elif type == 3:
+                        print("Will be available soon. Please choose another file format")
+                    # IMPORT FROM XML FILE FORMAT
+                    elif type == 4:
+                        print("Will be available soon. Please choose another file format")
+                except:
+                    pass
         except:
             print('Not valid data type, please try again.')
         # EXIT
