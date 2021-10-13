@@ -1,7 +1,6 @@
 from datetime import date
 from datetime import datetime
-from package import console_menu
-from package import insert_note
+from package import console_menu, insert_note  # , text_transform_module
 import os
 
 
@@ -101,10 +100,10 @@ def import_load(flag):
         flag = int(flag)
         # NOT VALID TYPE
         if int(flag) not in [1, 2, 3, 4, 0]:
-            print(f'"{flag}" is not valid value. Please, try again')
+            print(console_menu.error_not_valid_flag(flag))
         # IMPORT FROM CUSTOM FILE FORMAT
         elif flag == 1:
-            path_to_file = str(input("Please, specify the file path\n> "))
+            path_to_file = console_menu.input_file_path()
             # specify default path to file(current directory)
             # !!!! need to add strong specification to current dir.
             if path_to_file == '':

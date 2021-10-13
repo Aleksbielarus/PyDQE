@@ -52,6 +52,10 @@ def goodbye_message():
     return "Have a good day!"
 
 
+def input_file_path():
+    return str(input("Please, specify the file path\n> "))
+
+
 # ----------------------- ERROR MESSAGES -----------------------
 def error_unavailable_now():
     return "Will be available soon. Please choose another file format"
