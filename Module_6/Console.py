@@ -1,6 +1,7 @@
 from datetime import date
 from datetime import datetime
 from package import console_menu
+from package import insert_note
 import os
 
 
@@ -70,10 +71,7 @@ def news(flag):
     note_text = console_menu.note_text()
     note_city = console_menu.note_city()
     new_note = News('News', note_text, note_city)
-    insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type())) * '-'}\n" \
-                 f"{new_note.print_note_text()}\n" \
-                 f"{new_note.print_city()}, {new_note.print_datetime()}\n" \
-                 f"{31 * '-'}\n"
+    insert_row = insert_note.insert_news_note(new_note)
     add_new_note(insert_row)
     print(console_menu.creation_confirm_message(flag))
 
@@ -82,10 +80,7 @@ def private_add(flag):
     note_text = console_menu.note_text()
     note_date = console_menu.note_date()
     new_note = PrivateAd('Private Add', note_text, note_date)
-    insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type())) * '-'}\n" \
-                 f"{new_note.print_note_text()}\n" \
-                 f"Actual until: {new_note.print_date()}, {new_note.print_days_left()} days left\n" \
-                 f"{31 * '-'}\n"
+    insert_row = insert_note.insert_news_note(new_note)
     add_new_note(insert_row)
     print(console_menu.creation_confirm_message(flag))
 
@@ -96,10 +91,7 @@ def weather(flag):
     note_degrees = console_menu.note_degrees()
     note_date = console_menu.note_date()
     new_note = Weather('Weather', note_text, note_city, note_date, note_degrees)
-    insert_row = f"{new_note.print_type()} {(30 - len(new_note.print_type())) * '-'}\n" \
-                 f"{new_note.print_note_text()}\n" \
-                 f"{new_note.print_city()}, {new_note.print_degrees()} degrees {new_note.print_date()}\n" \
-                 f"{31 * '-'}\n"
+    insert_row = insert_note.insert_news_note(new_note)
     add_new_note(insert_row)
     print(console_menu.creation_confirm_message(flag))
 

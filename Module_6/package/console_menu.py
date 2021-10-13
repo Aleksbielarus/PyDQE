@@ -1,4 +1,4 @@
-#  MANUAL INPUT FUNCTIONS
+# ----------------------- MANUAL INPUT FUNCTIONS -----------------------
 def note_text():
     return input("Please input message text:\n> ").capitalize()
 
@@ -15,7 +15,7 @@ def note_degrees():
     return input("Please input degrees:\n> ").capitalize()
 
 
-# OTHER MESSAGES
+# ----------------------- OTHER MESSAGES -----------------------
 def welcome_message():
     return 'please choose input type:\n' \
                        ' input "1" if manual\n' \
@@ -52,7 +52,7 @@ def goodbye_message():
     return "Have a good day!"
 
 
-# ERROR MESSAGES
+# ----------------------- ERROR MESSAGES -----------------------
 def error_unavailable_now():
     return "Will be available soon. Please choose another file format"
 
