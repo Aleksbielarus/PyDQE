@@ -1,7 +1,8 @@
 from datetime import date
 from datetime import datetime
-from package import console_menu, insert_note  # , text_transform_module
+from package import console_menu, insert_note, text_transform_module
 import os
+import json
 
 
 class Note:
@@ -75,11 +76,11 @@ def news(flag):
     print(console_menu.creation_confirm_message(flag))
 
 
-def private_add(flag):
+def private_ad(flag):
     note_text = console_menu.note_text()
     note_date = console_menu.note_date()
-    new_note = PrivateAd('Private Add', note_text, note_date)
-    insert_row = insert_note.insert_news_note(new_note)
+    new_note = PrivateAd('Private Ad', note_text, note_date)
+    insert_row = insert_note.insert_private_note(new_note)
     add_new_note(insert_row)
     print(console_menu.creation_confirm_message(flag))
 
@@ -109,7 +110,7 @@ def import_load(flag):
             if path_to_file == '':
                 path_to_file = os.getcwd()
             file_text = list(open(path_to_file, 'r'))
-            print(file_text)
+            return file_text
         # IMPORT FROM CSV FILE FORMAT
         elif flag == 2:
             print(console_menu.error_unavailable_now())
@@ -127,12 +128,43 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
     if input_type == 'm':
         if note_type.lower() == 'news':
             news(flag)
-        elif note_type.lower() == 'private add':
-            private_add(flag)
+        elif note_type.lower() == 'private ad':
+            private_ad(flag)
         elif note_type.lower() == 'weather':
             weather(flag)
     elif input_type == 'i':
-        import_load(flag)
+        list_of_dict = import_load(flag)
+        for note in list_of_dict:
+            note = json.loads(note)
+            print(note)
+            note_type = note['header'].lower()
+            if note_type == 'news':
+                print(f'some action for {note_type}')
+                note_text = text_transform_module.text_formatting(note['text'])
+                note_city = text_transform_module.text_formatting(note['city'])
+                new_note = News('News', note_text, note_city)
+                insert_row = insert_note.insert_news_note(new_note)
+                add_new_note(insert_row)
+                print('ok')
+            elif note_type == 'weather':
+                print(f'some action for {note_type}')
+
+                note_text = text_transform_module.text_formatting(note['text'])
+                note_city = text_transform_module.text_formatting(note['city'])
+                note_degrees = note['temp']
+                note_date = note['date']
+                new_note = Weather('Weather', note_text, note_city, note_date, note_degrees)
+                insert_row = insert_note.insert_news_note(new_note)
+                add_new_note(insert_row)
+                print('ok')
+            elif note_type == 'private ad':
+                print(f'some action for {note_type}')
+                note_text = text_transform_module.text_formatting(note['text'])
+                note_date = note['date']
+                new_note = PrivateAd('Private Ad', note_text, note_date)
+                insert_row = insert_note.insert_private_note(new_note)
+                add_new_note(insert_row)
+                print('ok')
     else:
         print('error')
 
@@ -166,7 +198,8 @@ def console():
                         input_note('m', 1, 'news')
                     # PRIVATE AD
                     elif flag == 2:
-                        input_note('m', 2, 'private add')
+                        input_note('m', 2, 'private ad')
+                        print('----')
                     # MY UNIQUE NOTE (WEATHER)
                     elif flag == 3:
                         input_note('m', 3, 'weather')
