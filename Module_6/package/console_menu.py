@@ -1,3 +1,6 @@
+import os
+
+
 # ----------------------- MANUAL INPUT FUNCTIONS -----------------------
 def note_text():
     return input("Please input message text:\n> ").capitalize()
@@ -52,8 +55,8 @@ def goodbye_message():
     return "Have a good day!"
 
 
-def input_file_path():
-    return str(input("Please, specify the file path\n> "))
+def input_file_path(file_name=''):
+    return str(input("Please, specify the file path\n> ") or os.getcwd() + '\\' + file_name)
 
 
 # ----------------------- ERROR MESSAGES -----------------------

@@ -104,9 +104,7 @@ def import_load(flag):
             print(console_menu.error_not_valid_flag(flag))
         # IMPORT FROM CUSTOM FILE FORMAT
         elif flag == 1:
-            path_to_file = console_menu.input_file_path()
-            # specify default path to file(current directory)
-            # !!!! need to add strong specification to current dir.
+            path_to_file = console_menu.input_file_path('input_file')
             if path_to_file == '':
                 path_to_file = os.getcwd()
             file_text = list(open(path_to_file, 'r'))
@@ -139,16 +137,13 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
             print(note)
             note_type = note['header'].lower()
             if note_type == 'news':
-                print(f'some action for {note_type}')
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_city = text_transform_module.text_formatting(note['city'])
                 new_note = News('News', note_text, note_city)
                 insert_row = insert_note.insert_news_note(new_note)
                 add_new_note(insert_row)
-                print('ok')
+                print(console_menu.creation_confirm_message(note_type))
             elif note_type == 'weather':
-                print(f'some action for {note_type}')
-
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_city = text_transform_module.text_formatting(note['city'])
                 note_degrees = note['temp']
@@ -156,17 +151,21 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 new_note = Weather('Weather', note_text, note_city, note_date, note_degrees)
                 insert_row = insert_note.insert_news_note(new_note)
                 add_new_note(insert_row)
-                print('ok')
+                print(console_menu.creation_confirm_message(note_type))
             elif note_type == 'private ad':
-                print(f'some action for {note_type}')
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_date = note['date']
                 new_note = PrivateAd('Private Ad', note_text, note_date)
                 insert_row = insert_note.insert_private_note(new_note)
                 add_new_note(insert_row)
-                print('ok')
+                print(console_menu.creation_confirm_message(note_type))
     else:
         print('error')
+
+
+def drop_file(path_to_file, file_name):
+    os.remove(path_to_file +'//' + file_name)
+    print("File was removed!")
 
 
 def console():
@@ -184,6 +183,7 @@ def console():
             # NOT VALID TYPE
             if int(flag) not in [1, 2, 0]:
                 print(console_menu.error_not_valid_flag(flag))
+            # MANUAL INPUT
             elif int(flag) == 1:
                 print(manual_input.capitalize())
                 flag = input('> ')
@@ -207,6 +207,7 @@ def console():
                 except ValueError:
                     print(console_menu.error_date_type())
                 flag = console_menu.continue_massage()
+            # IMPORT INPUT
             elif int(flag) == 2:
                 print(import_input)
                 flag = input('> ')

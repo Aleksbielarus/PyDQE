@@ -178,7 +178,7 @@ def add_text(place_to_add, text_to_add, txt):
 def text_formatting(txt):
     proc_text = txt
     # proc_text = remove_empty_lines(proc_text)     # remove empty lines
-    # proc_text = remove_spaces(proc_text)          # remove useless spaces
+    proc_text = remove_spaces(proc_text)          # remove useless spaces
     proc_text = register_normalize(proc_text)       # apply register correction
     proc_text = rplc(proc_text, ' iz ', ' is ')     # typo correction   OK
     proc_text = rplc(proc_text, ' tex.', ' text.')  # typo correction   OK
