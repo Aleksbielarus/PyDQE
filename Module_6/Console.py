@@ -105,10 +105,8 @@ def import_load(flag):
         # IMPORT FROM CUSTOM FILE FORMAT
         elif flag == 1:
             path_to_file = console_menu.input_file_path('input_file')
-            if path_to_file == '':
-                path_to_file = os.getcwd()
             file_text = list(open(path_to_file, 'r'))
-            return file_text
+            return file_text, path_to_file
         # IMPORT FROM CSV FILE FORMAT
         elif flag == 2:
             print(console_menu.error_unavailable_now())
@@ -131,7 +129,9 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
         elif note_type.lower() == 'weather':
             weather(flag)
     elif input_type == 'i':
-        list_of_dict = import_load(flag)
+        list_and_path = import_load(flag)
+        list_of_dict = list_and_path[0]
+        file_path = list_and_path[1]
         for note in list_of_dict:
             note = json.loads(note)
             print(note)
@@ -159,12 +159,13 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 insert_row = insert_note.insert_private_note(new_note)
                 add_new_note(insert_row)
                 print(console_menu.creation_confirm_message(note_type))
+        drop_file(file_path)
     else:
         print('error')
 
 
-def drop_file(path_to_file, file_name):
-    os.remove(path_to_file +'//' + file_name)
+def drop_file(path_to_file):
+    os.remove(path_to_file)
     print("File was removed!")
 
 
