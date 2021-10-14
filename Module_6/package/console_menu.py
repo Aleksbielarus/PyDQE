@@ -72,5 +72,5 @@ def error_import_type():
     return 'Not valid import type.'
 
 
-def error_date_type():
+def error_data_type():
     return 'Not valid data type, please try again.'

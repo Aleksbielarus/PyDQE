@@ -68,8 +68,8 @@ def add_new_note(new_note):
 
 
 def news(flag):
-    note_text = console_menu.note_text()
-    note_city = console_menu.note_city()
+    note_text = text_transform_module.text_formatting(console_menu.note_text())
+    note_city = text_transform_module.text_formatting(console_menu.note_city())
     new_note = News('News', note_text, note_city)
     insert_row = insert_note.insert_news_note(new_note)
     add_new_note(insert_row)
@@ -77,7 +77,7 @@ def news(flag):
 
 
 def private_ad(flag):
-    note_text = console_menu.note_text()
+    note_text = text_transform_module.text_formatting(console_menu.note_text())
     note_date = console_menu.note_date()
     new_note = PrivateAd('Private Ad', note_text, note_date)
     insert_row = insert_note.insert_private_note(new_note)
@@ -86,8 +86,8 @@ def private_ad(flag):
 
 
 def weather(flag):
-    note_text = console_menu.note_text()
-    note_city = console_menu.note_city()
+    note_text = text_transform_module.text_formatting(console_menu.note_text())
+    note_city = text_transform_module.text_formatting(console_menu.note_city())
     note_degrees = console_menu.note_degrees()
     note_date = console_menu.note_date()
     new_note = Weather('Weather', note_text, note_city, note_date, note_degrees)
@@ -159,7 +159,7 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 insert_row = insert_note.insert_private_note(new_note)
                 add_new_note(insert_row)
                 print(console_menu.creation_confirm_message(note_type))
-        drop_file(file_path)
+        #  drop_file(file_path)
     else:
         print('error')
 
@@ -200,22 +200,31 @@ def console():
                     # PRIVATE AD
                     elif flag == 2:
                         input_note('m', 2, 'private ad')
-                        print('----')
                     # MY UNIQUE NOTE (WEATHER)
                     elif flag == 3:
                         input_note('m', 3, 'weather')
                 # TYPE ERROR
                 except ValueError:
-                    print(console_menu.error_date_type())
-                flag = console_menu.continue_massage()
+                    print(console_menu.error_data_type())
             # IMPORT INPUT
             elif int(flag) == 2:
                 print(import_input)
                 flag = input('> ')
-                input_note('i', flag)
+                try:
+                    flag = int(flag)
+                    if int(flag) not in [1, 2, 3, 0]:
+                        print(console_menu.error_not_valid_flag(flag))
+                    elif int(flag) == 0:
+                        print(console_menu.goodbye_message())
+                    else:
+                        input_note('i', flag)
+                except ValueError:
+                    print(console_menu.error_data_type())
         except ValueError:
-            print(console_menu.error_date_type())
+            print(console_menu.error_data_type())
         # EXIT
+        if flag != 0:
+            flag = console_menu.continue_massage()
         if flag == 0:
             print(console_menu.goodbye_message())
         cnt += 1
