@@ -159,7 +159,7 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 insert_row = insert_note.insert_private_note(new_note)
                 add_new_note(insert_row)
                 print(console_menu.creation_confirm_message(note_type))
-        #  drop_file(file_path)
+        drop_file(file_path)
     else:
         print('error')
 
