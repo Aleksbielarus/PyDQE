@@ -153,8 +153,6 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 new_note = Weather('Weather', note_text, note_city, note_date, note_degrees)
                 insert_row = insert_note.insert_news_note(new_note)
                 add_new_note(insert_row)
-                print(note_text)
-                print('hello')
                 Test_module.word_count(note_text, 'word_count.csv')
                 print(console_menu.creation_confirm_message(note_type))
             elif note_type == 'private ad':
