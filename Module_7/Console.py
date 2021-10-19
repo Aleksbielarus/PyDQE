@@ -1,7 +1,7 @@
 from datetime import date
 from datetime import datetime
 from package import console_menu, insert_note, text_transform_module
-from Tests import Test_module
+from tests import test_module
 import os
 import json
 
@@ -143,7 +143,6 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 new_note = News('News', note_text, note_city)
                 insert_row = insert_note.insert_news_note(new_note)
                 add_new_note(insert_row)
-                Test_module.word_count(note_text, 'word_count.csv')
                 print(console_menu.creation_confirm_message(note_type))
             elif note_type == 'weather':
                 note_text = text_transform_module.text_formatting(note['text'])
@@ -153,7 +152,6 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 new_note = Weather('Weather', note_text, note_city, note_date, note_degrees)
                 insert_row = insert_note.insert_news_note(new_note)
                 add_new_note(insert_row)
-                Test_module.word_count(note_text, 'word_count.csv')
                 print(console_menu.creation_confirm_message(note_type))
             elif note_type == 'private ad':
                 note_text = text_transform_module.text_formatting(note['text'])
@@ -161,8 +159,11 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 new_note = PrivateAd('Private Ad', note_text, note_date)
                 insert_row = insert_note.insert_private_note(new_note)
                 add_new_note(insert_row)
-                Test_module.word_count(note_text, 'word_count.csv')
                 print(console_menu.creation_confirm_message(note_type))
+            # add count tests
+            date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
+            test_module.word_count(note_text, 'word_count.csv', note_type, date)
+            test_module.letter_count(note_text, 'letter_count.csv', note_type, date)
         drop_file(file_path)
     else:
         print('error')
