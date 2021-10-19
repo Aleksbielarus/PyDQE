@@ -1,0 +1,120 @@
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.21
+-------------------------------
+
+News --------------------------
+Hello world
+London, 19/10/2021 11.21
+-------------------------------
+
+Private Ad --------------------
+ Some text
+Actual until: 15/11/2021, 26 days left
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.28
+-------------------------------
+
+News --------------------------
+Hello world
+London, 19/10/2021 11.28
+-------------------------------
+
+Private Ad --------------------
+ Some text
+Actual until: 15/11/2021, 26 days left
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.40
+-------------------------------
+
+News --------------------------
+Hello world
+London, 19/10/2021 11.40
+-------------------------------
+
+Private Ad --------------------
+ Some text
+Actual until: 15/11/2021, 26 days left
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.41
+-------------------------------
+
+News --------------------------
+Hello world
+London, 19/10/2021 11.41
+-------------------------------
+
+Private Ad --------------------
+ Some text
+Actual until: 15/11/2021, 26 days left
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.42
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.46
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.46
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.49
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.49
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 11.53
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 12.09
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 12.10
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy
+Minsk, 19/10/2021 12.11
+-------------------------------
+
+News --------------------------
+Hello world
+London, 19/10/2021 12.11
+-------------------------------
+
+Private Ad --------------------
+ Some text
+Actual until: 15/11/2021, 26 days left
+-------------------------------
+
+News --------------------------
+Sadf
+Sadfg, 19/10/2021 12.14
+-------------------------------
+
