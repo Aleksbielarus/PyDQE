@@ -133,7 +133,7 @@ def input_note(input_type, flag):
     elif input_type == 'i':
         list_and_path = import_load(flag)
         list_of_dict = list_and_path[0]
-        # file_path = list_and_path[1]
+        file_path = list_and_path[1]
         for note in list_of_dict:
             if isinstance(note, str):
                 note = json.loads(note)
@@ -165,7 +165,7 @@ def input_note(input_type, flag):
             added_date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
             test_module.word_count(note_text, 'word_count.csv', note_type, added_date)
             test_module.letter_count(note_text, 'letter_count.csv', note_type, added_date)
-        # console_menu.drop_file(file_path)
+        console_menu.drop_file(file_path)
     else:
         print('error')
 
