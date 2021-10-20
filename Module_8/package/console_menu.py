@@ -1,7 +1,7 @@
 import os
 
 
-# ----------------------- MANUAL INPUT FUNCTIONS -----------------------
+# ----------------------- MANUAL INPUT FUNCTIONS ---------------
 def note_text():
     return input("Please input message text:\n> ").capitalize()
 
@@ -74,3 +74,14 @@ def error_import_type():
 
 def error_data_type():
     return 'Not valid data type, please try again.'
+
+
+
+def dict_of_notes():
+    return {1: 'news', 2: 'private ad', 3: 'weather', 0: 'exit'}
+
+
+# -----------------------DROP FILE AND PRINT INFORM MESSAGE -----
+def drop_file(path_to_file):
+    os.remove(path_to_file)
+    print("File was removed!")

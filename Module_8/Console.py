@@ -2,7 +2,7 @@ from datetime import date
 from datetime import datetime
 from package import console_menu, insert_note, text_transform_module
 from tests import test_module
-import os
+# import os
 import json
 
 
@@ -62,12 +62,6 @@ class Weather(Note):
         return self.city
 
 
-# add new note to text file.
-def add_new_note(new_note):
-    with open("file.txt", "a") as text_file:
-        text_file.write(new_note + '\n')
-
-
 def news(flag):
     note_text = text_transform_module.text_formatting(console_menu.note_text())
     note_city = text_transform_module.text_formatting(console_menu.note_city())
@@ -97,6 +91,12 @@ def weather(flag):
     print(console_menu.creation_confirm_message(flag))
 
 
+# add new note to text file.
+def add_new_note(new_note):
+    with open("file.txt", "a") as text_file:
+        text_file.write(new_note + '\n')
+
+
 def import_load(flag):
     try:
         flag = int(flag)
@@ -122,25 +122,23 @@ def import_load(flag):
         print(console_menu.error_import_type())
 
 
-def input_note(input_type, flag, note_type='news'):  # default param is news
+def input_note(input_type, flag):
     if input_type == 'm':
-        if note_type.lower() == 'news':
+        if flag == 1:
             news(flag)
-        elif note_type.lower() == 'private ad':
+        elif flag == 2:
             private_ad(flag)
-        elif note_type.lower() == 'weather':
+        elif flag == 3:
             weather(flag)
     elif input_type == 'i':
         list_and_path = import_load(flag)
         list_of_dict = list_and_path[0]
-        file_path = list_and_path[1]
+        # file_path = list_and_path[1]
         for note in list_of_dict:
             if isinstance(note, str):
                 note = json.loads(note)
-            # note = json.loads(note)
             note_type = note['header'].lower()
             if note_type == 'news':
-                print(note['text'])
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_city = text_transform_module.text_formatting(note['city'])
                 new_note = News('News', note_text, note_city)
@@ -167,14 +165,9 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
             added_date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
             test_module.word_count(note_text, 'word_count.csv', note_type, added_date)
             test_module.letter_count(note_text, 'letter_count.csv', note_type, added_date)
-        drop_file(file_path)
+        # console_menu.drop_file(file_path)
     else:
         print('error')
-
-
-def drop_file(path_to_file):
-    os.remove(path_to_file)
-    print("File was removed!")
 
 
 def console():
@@ -199,17 +192,11 @@ def console():
                 try:
                     flag = int(flag)
                     # NOT VALID TYPE
-                    if int(flag) not in [1, 2, 3, 0]:
+                    if int(flag) not in console_menu.dict_of_notes().keys():
                         print(console_menu.error_not_valid_flag(flag))
-                    # NEWS NOTE
-                    elif int(flag) == 1:
-                        input_note('m', 1, 'news')
-                    # PRIVATE AD
-                    elif flag == 2:
-                        input_note('m', 2, 'private ad')
-                    # MY UNIQUE NOTE (WEATHER)
-                    elif flag == 3:
-                        input_note('m', 3, 'weather')
+                    # GO TO INPUT NOTE
+                    elif int(flag) in console_menu.dict_of_notes().keys():
+                        input_note('m', flag)
                 # TYPE ERROR
                 except ValueError:
                     print(console_menu.error_data_type())
@@ -223,9 +210,7 @@ def console():
                     elif int(flag) == 0:
                         print(console_menu.goodbye_message())
                     else:
-                        print(flag)
                         input_note('i', flag)
-                        print(flag)
                 except ValueError:
                     print(console_menu.error_data_type())
         except ValueError:
