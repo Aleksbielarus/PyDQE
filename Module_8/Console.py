@@ -111,9 +111,10 @@ def import_load(flag):
         # IMPORT FROM CSV FILE FORMAT
         elif flag == 2:
             print(console_menu.error_unavailable_now())
-        # IMPORT FROM JSON FILE FORMAT
         elif flag == 3:
-            print(console_menu.error_unavailable_now())
+            path_to_file = console_menu.input_file_path('file.json')
+            file_text = json.load(open('file.json',))
+            return file_text, path_to_file
         # IMPORT FROM XML FILE FORMAT
         elif flag == 4:
             print(console_menu.error_unavailable_now())
@@ -134,10 +135,12 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
         list_of_dict = list_and_path[0]
         file_path = list_and_path[1]
         for note in list_of_dict:
-            note = json.loads(note)
-            print(note)
+            if isinstance(note, str):
+                note = json.loads(note)
+            # note = json.loads(note)
             note_type = note['header'].lower()
             if note_type == 'news':
+                print(note['text'])
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_city = text_transform_module.text_formatting(note['city'])
                 new_note = News('News', note_text, note_city)
@@ -161,9 +164,9 @@ def input_note(input_type, flag, note_type='news'):  # default param is news
                 add_new_note(insert_row)
                 print(console_menu.creation_confirm_message(note_type))
             # add count tests
-            date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
-            test_module.word_count(note_text, 'word_count.csv', note_type, date)
-            test_module.letter_count(note_text, 'letter_count.csv', note_type, date)
+            added_date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
+            test_module.word_count(note_text, 'word_count.csv', note_type, added_date)
+            test_module.letter_count(note_text, 'letter_count.csv', note_type, added_date)
         drop_file(file_path)
     else:
         print('error')
@@ -220,7 +223,9 @@ def console():
                     elif int(flag) == 0:
                         print(console_menu.goodbye_message())
                     else:
+                        print(flag)
                         input_note('i', flag)
+                        print(flag)
                 except ValueError:
                     print(console_menu.error_data_type())
         except ValueError:

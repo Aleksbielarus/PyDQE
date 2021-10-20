@@ -1,0 +1,17 @@
+[{
+  "header": "news",
+  "text": "hello world11",
+  "city": "Minsk"
+},
+{
+  "header": "weAther",
+  "text": "json file, today is cloudy11",
+  "temp": "18",
+  "city": "London",
+  "date": "20/12/2021"
+},
+{
+  "header": "Private ad",
+  "text": "some private add11",
+  "date": "21/11/2021"
+}]
