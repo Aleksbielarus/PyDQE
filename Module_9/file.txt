@@ -128,3 +128,33 @@ Some private add11
 Actual until: 21/11/2021, 31 days left
 -------------------------------
 
+News --------------------------
+Hello world11
+Minsk, 21/10/2021 13.13
+-------------------------------
+
+Weather -----------------------
+Json file, today is cloudy11
+London, 21/10/2021 13.13
+-------------------------------
+
+Private Ad --------------------
+Some private add11
+Actual until: 21/11/2021, 30 days left
+-------------------------------
+
+News --------------------------
+Xml file. Hello world
+Minsk, 21/10/2021 13.15
+-------------------------------
+
+Weather -----------------------
+Xml file. Today is cloudy
+Minsk, 21/10/2021 13.15
+-------------------------------
+
+Private Ad --------------------
+Xml file. Hello world
+Actual until: 25/12/2021, 64 days left
+-------------------------------
+

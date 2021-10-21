@@ -1,7 +1,8 @@
 from datetime import date
 from datetime import datetime
-from package import console_menu, insert_note, text_transform_module
+from package import console_menu, insert_note, text_transform_module, convert_to_dict
 from tests import test_module
+from xml.etree import ElementTree as ElementTree
 # import os
 import json
 
@@ -117,7 +118,11 @@ def import_load(flag):
             return file_text, path_to_file
         # IMPORT FROM XML FILE FORMAT
         elif flag == 4:
-            print(console_menu.error_unavailable_now())
+            path_to_file = console_menu.input_file_path('xml_file.xml')
+            tree = ElementTree.parse(path_to_file)
+            root = tree.getroot()
+            file_text = convert_to_dict.xml_to_list_of_dicts(root, './note')
+            return file_text, path_to_file
     except ValueError:
         print(console_menu.error_import_type())
 
@@ -165,7 +170,7 @@ def input_note(input_type, flag):
             added_date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
             test_module.word_count(note_text, 'word_count.csv', note_type, added_date)
             test_module.letter_count(note_text, 'letter_count.csv', note_type, added_date)
-        console_menu.drop_file(file_path)
+        # console_menu.drop_file(file_path)
     else:
         print('error')
 
@@ -205,7 +210,7 @@ def console():
                 flag = input(import_input.capitalize()+'\n> ')
                 try:
                     flag = int(flag)
-                    if int(flag) not in [1, 2, 3, 0]:
+                    if int(flag) not in [1, 2, 3, 4, 0]:
                         print(console_menu.error_not_valid_flag(flag))
                     elif int(flag) == 0:
                         print(console_menu.goodbye_message())
