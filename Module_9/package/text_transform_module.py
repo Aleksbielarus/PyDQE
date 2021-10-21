@@ -96,17 +96,17 @@ def remove_spaces(txt):
     Function name: 
         create_sentence(txt)
     Function description: 
-        fuction create sentence, that consists from the 
-        last word of each sentance of the input text.
+        function create sentence, that consists from the 
+        last word of each sentence of the input text.
     Params:
         txt - it's a str formatting text.
     Return:
         new_row - string formatting sentence consists from 
-                  last word of each sentance of the input text.
+                  last word of each sentence of the input text.
 '''
 
 
-def create_sentence(txt):  # grubaya sila
+def create_sentence(txt):
     add_word = str()
     new_row = str()
     for i in txt:
@@ -124,7 +124,7 @@ def create_sentence(txt):  # grubaya sila
     Function name: 
         space_calc(txt)
     Function description: 
-        fuction calculate sum of spaces and line breaks.
+        function calculate sum of spaces and line breaks.
     Params:
         txt - it's a str formatting text.
     Return:
@@ -140,8 +140,8 @@ def space_calc(txt):
 '''
     Function name: 
         add_text(place_to_add, text_to_add, txt):
-    Fuction description: 
-        fuction add text to string object to the required place
+    Function description: 
+        function add text to string object to the required place
     Params:
         place_to_add - it's a str formatting text. text_to_add would be added after place_to_add.
         text_to_add - it's a text for adding.
