@@ -1,0 +1,16 @@
+<Notes>
+    <note header="news">
+        <text>xml file.  hello world</text>
+        <city>minsk</city>
+    </note>
+    <note header="weather">
+        <text>xml file. Today is cloudy</text>
+        <temp>25</temp>
+        <city>minsk</city>
+        <date>01/10/2021</date>
+    </note>
+    <note header ="Private ad">
+        <text>xml file.  hello world</text>
+        <date>25/12/2021</date>
+    </note>
+</Notes>
