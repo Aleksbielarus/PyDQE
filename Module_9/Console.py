@@ -170,7 +170,7 @@ def input_note(input_type, flag):
             added_date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
             test_module.word_count(note_text, 'word_count.csv', note_type, added_date)
             test_module.letter_count(note_text, 'letter_count.csv', note_type, added_date)
-        # console_menu.drop_file(file_path)
+        console_menu.drop_file(file_path)
     else:
         print('error')
 
