@@ -10,7 +10,8 @@ cursor.execute('''DROP TABLE IF EXISTS notes.news_notes''')
 cursor.execute('''CREATE TABLE notes.news_notes(
                     note_name varchar,
                     note_text varchar,
-                    note_city varchar
+                    note_city varchar,
+                    note_source varchar
                     )''')
 conn.commit()
 
@@ -18,7 +19,8 @@ cursor.execute('''DROP TABLE IF EXISTS notes.private_ad_notes''')
 cursor.execute('''CREATE TABLE notes.private_ad_notes(
                     note_name varchar,
                     note_text varchar,
-                    note_date varchar
+                    note_date varchar,
+                    note_source varchar
                     )''')
 conn.commit()
 
@@ -28,6 +30,7 @@ cursor.execute('''CREATE TABLE notes.weather_notes(
                     note_text varchar,
                     note_city varchar,
                     note_degrees varchar,
-                    note_date varchar
+                    note_date varchar,
+                    note_source varchar
                     )''')
 conn.commit()
