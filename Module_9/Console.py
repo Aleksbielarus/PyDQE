@@ -5,6 +5,8 @@ from tests import test_module
 from xml.etree import ElementTree as ElementTree
 # import os
 import json
+from Connection import connector
+import ast
 
 
 class Note:
@@ -64,32 +66,56 @@ class Weather(Note):
 
 
 def news(flag):
+    note_type = 'news'
     note_text = text_transform_module.text_formatting(console_menu.note_text())
     note_city = text_transform_module.text_formatting(console_menu.note_city())
+    note_source = 'placeholder'
     new_note = News('News', note_text, note_city)
     insert_row = insert_note.insert_news_note(new_note)
     add_new_note(insert_row)
     print(console_menu.creation_confirm_message(flag))
-
+    database_insert = ast.literal_eval("{" + f'''"note_type": "{note_type}", 
+                          "note_name": "{news.__name__}",
+                          "note_text": "{note_text}", 
+                          "note_city": "{note_city}",
+                          "note_source": "{note_source}"''' + "}")
+    return database_insert
 
 def private_ad(flag):
+    note_type = 'private ad'
     note_text = text_transform_module.text_formatting(console_menu.note_text())
     note_date = console_menu.note_date()
+    note_source = 'placeholder'
     new_note = PrivateAd('Private Ad', note_text, note_date)
     insert_row = insert_note.insert_private_note(new_note)
     add_new_note(insert_row)
     print(console_menu.creation_confirm_message(flag))
-
+    database_insert = ast.literal_eval("{" + f'''"note_type": "{note_type}", 
+                          "note_name": "{news.__name__}",
+                          "note_text": "{note_text}", 
+                          "note_date": "{note_date}",
+                          "note_source": "{note_source}"''' + "}")
+    return database_insert
 
 def weather(flag):
+    note_type = 'weather'
     note_text = text_transform_module.text_formatting(console_menu.note_text())
     note_city = text_transform_module.text_formatting(console_menu.note_city())
     note_degrees = console_menu.note_degrees()
     note_date = console_menu.note_date()
+    note_source = 'placeholder'
     new_note = Weather('Weather', note_text, note_city, note_date, note_degrees)
     insert_row = insert_note.insert_news_note(new_note)
     add_new_note(insert_row)
     print(console_menu.creation_confirm_message(flag))
+    database_insert = ast.literal_eval("{" + f'''"note_type": "{note_type}", 
+                          "note_name": "{news.__name__}",
+                          "note_text": "{note_text}", 
+                          "note_city": "{note_city}",
+                          "note_degrees": "{note_degrees}",
+                          "note_date": "{note_date}",
+                          "note_source": "{note_source}"''' + "}")
+    return database_insert
 
 
 # add new note to text file.
@@ -130,11 +156,12 @@ def import_load(flag):
 def input_note(input_type, flag):
     if input_type == 'm':
         if flag == 1:
-            news(flag)
+            database_insert = news(flag)
         elif flag == 2:
-            private_ad(flag)
+            database_insert = private_ad(flag)
         elif flag == 3:
-            weather(flag)
+            database_insert = weather(flag)
+        insert_note_into_database(database_insert)
     elif input_type == 'i':
         list_and_path = import_load(flag)
         list_of_dict = list_and_path[0]
@@ -143,6 +170,7 @@ def input_note(input_type, flag):
             if isinstance(note, str):
                 note = json.loads(note)
             note_type = note['header'].lower()
+            note_source = 'placeholder' # need to add source identifier.
             if note_type == 'news':
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_city = text_transform_module.text_formatting(note['city'])
@@ -150,6 +178,11 @@ def input_note(input_type, flag):
                 insert_row = insert_note.insert_news_note(new_note)
                 add_new_note(insert_row)
                 print(console_menu.creation_confirm_message(note_type))
+                database_insert = ast.literal_eval("{" + f'''"note_type": "{note_type}", 
+                                      "note_name": "{news.__name__}",
+                                      "note_text": "{note_text}", 
+                                      "note_city": "{note_city}",
+                                      "note_source": "{note_source}"''' + "}")
             elif note_type == 'weather':
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_city = text_transform_module.text_formatting(note['city'])
@@ -159,6 +192,13 @@ def input_note(input_type, flag):
                 insert_row = insert_note.insert_news_note(new_note)
                 add_new_note(insert_row)
                 print(console_menu.creation_confirm_message(note_type))
+                database_insert = ast.literal_eval("{" + f'''"note_type": "{note_type}", 
+                                      "note_name": "{news.__name__}",
+                                      "note_text": "{note_text}", 
+                                      "note_city": "{note_city}",
+                                      "note_degrees": "{note_degrees}",
+                                      "note_date": "{note_date}",
+                                      "note_source": "{note_source}"''' + "}")
             elif note_type == 'private ad':
                 note_text = text_transform_module.text_formatting(note['text'])
                 note_date = note['date']
@@ -166,6 +206,12 @@ def input_note(input_type, flag):
                 insert_row = insert_note.insert_private_note(new_note)
                 add_new_note(insert_row)
                 print(console_menu.creation_confirm_message(note_type))
+                database_insert = ast.literal_eval("{" + f'''"note_type": "{note_type}", 
+                                      "note_name": "{news.__name__}",
+                                      "note_text": "{note_text}", 
+                                      "note_date": "{note_date}",
+                                      "note_source": "{note_source}"''' + "}")
+            insert_note_into_database(database_insert)
             # add count tests
             added_date = datetime.now().strftime('%d/%m/%Y %H.%M.%S')
             test_module.word_count(note_text, 'word_count.csv', note_type, added_date)
@@ -174,6 +220,35 @@ def input_note(input_type, flag):
     else:
         print('error')
 
+
+def insert_note_into_database(dict_to_db):
+    conn = connector.connect('notes_database')
+    cursor = conn.cursor()
+    print(dict_to_db)
+    if dict_to_db['note_type'] == 'news':
+        cursor.execute(
+            f'''INSERT INTO notes.news_notes (note_name, note_text, note_city, note_source)
+                VALUES ('{dict_to_db['note_name']}',
+                        '{dict_to_db['note_text']}', 
+                        '{dict_to_db['note_city']}',
+                        '{dict_to_db['note_source']}');''')
+    elif dict_to_db['note_type'] == 'weather':
+        cursor.execute(
+            f'''INSERT INTO notes.weather_notes (note_name, note_text, note_city, note_degrees, note_date, note_source )
+                VALUES ('{dict_to_db['note_name']}',
+                        '{dict_to_db['note_text']}',
+                        '{dict_to_db['note_city']}',
+                        '{dict_to_db['note_degrees']}',
+                        '{dict_to_db['note_date']}', 
+                        '{dict_to_db['note_source']}');''')
+    elif dict_to_db['note_type'] == 'private ad':
+        cursor.execute(
+            f'''INSERT INTO notes.private_ad_notes (note_name, note_text, note_date, note_source)
+                VALUES ('{dict_to_db['note_name']}',
+                        '{dict_to_db['note_text']}', 
+                        '{dict_to_db['note_date']}', 
+                        '{dict_to_db['note_source']}');''')
+    conn.commit()
 
 def console():
     flag = str()
