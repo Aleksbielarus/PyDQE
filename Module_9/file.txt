@@ -398,3 +398,48 @@ Xml file. Hello world
 Actual until: 25/12/2021, 56 days left
 -------------------------------
 
+Weather -----------------------
+ Today is cloudy. Today is cloudy today
+Minsk, 29/10/2021 10.58
+-------------------------------
+
+News --------------------------
+Hello world
+London, 29/10/2021 10.58
+-------------------------------
+
+Private Ad --------------------
+ Some text
+Actual until: 15/11/2021, 16 days left
+-------------------------------
+
+News --------------------------
+Hello world11
+Minsk, 29/10/2021 10.58
+-------------------------------
+
+Weather -----------------------
+Json file, today is cloudy11
+London, 29/10/2021 10.58
+-------------------------------
+
+Private Ad --------------------
+Some private add11
+Actual until: 21/11/2021, 22 days left
+-------------------------------
+
+Weather -----------------------
+ Today is cloudy. Today is cloudy today
+Minsk, 29/10/2021 11.01
+-------------------------------
+
+News --------------------------
+Hello world
+London, 29/10/2021 11.01
+-------------------------------
+
+Private Ad --------------------
+ Some text
+Actual until: 15/11/2021, 16 days left
+-------------------------------
+

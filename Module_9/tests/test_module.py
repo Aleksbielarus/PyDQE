@@ -58,9 +58,3 @@ def letter_count(txt, csvfile, note_type, datetime):
             letter_dict.update(n)
     write_csv1(csvfile, letter_dict, note_type, datetime)
     return letter_dict
-
-
-
-
-
-
