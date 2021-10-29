@@ -9,7 +9,7 @@ def no_duplicate_check(table_queries):
         cursor.execute(query)
         records = cursor.fetchall()
         if not records:
-            print('There is no duplicated rows in the table news_notes')
+            print('There is no duplicated rows in the table.')
         else:
             print(records)
 
